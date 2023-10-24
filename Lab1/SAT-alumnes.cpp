@@ -20,9 +20,14 @@ uint decisionLevel;
 
 vector<vector<int>> positiveLiterals;
 vector<vector<int>> negativeLiterals;
+vector<double> literalsActivity;
 
 int conflicts;
 int decs;
+
+const double INCREMENT = 1.0;
+const double DECREASE = 2.0;
+const int TIME_TO_UPDATE = 1000;
 
 void initialize(){
 
@@ -31,7 +36,7 @@ void initialize(){
 
     positiveLiterals.resize(numVars + 1);
     negativeLiterals.resize(numVars + 1);
-    // literalsActivity.resize(numVars + 1, 0.0);
+    literalsActivity.resize(numVars + 1, 0.0);
 }
 
 void readClauses()
@@ -59,12 +64,24 @@ void readClauses()
 		{
 			clauses[i].push_back(lit);
 			if(lit >= 0)
+			{
 				positiveLiterals[lit].push_back(i);
+				literalsActivity[lit] += INCREMENT;
+			}
 			else
+			{
 				negativeLiterals[-lit].push_back(i);
+				literalsActivity[-lit] += INCREMENT;
+			}
 		}
 
 	}
+}
+
+void itsTimeToUpdateTheActivity(){
+    for(uint i = 1; i < numVars; ++i){
+        literalsActivity[i] /= DECREASE;
+    }
 }
 
 int currentValueInModel(int lit)
@@ -87,6 +104,26 @@ void setLiteralToTrue(int lit)
 		model[lit] = TRUE;
 	else
 		model[-lit] = FALSE;
+}
+
+void updateLiteralActivity(int index)
+{
+    vector<int> literalClauses = clauses[index];
+    int size = literalClauses.size();
+    
+    for(int i = 0; i < size; ++i){
+        int lit = literalClauses[i];
+        if(lit < 0) lit = -lit;
+        literalsActivity[lit] += INCREMENT;
+    }        
+}
+
+void activityHeuristic(int index){
+    
+    if(conflicts%TIME_TO_UPDATE == 0)
+        itsTimeToUpdateTheActivity();
+    
+    updateLiteralActivity(index);
 }
 
 bool propagateGivesConflict()
@@ -120,7 +157,11 @@ bool propagateGivesConflict()
 			}
 
 			if (not someLitTrue and numUndefs == 0)
+			{
+				++conflicts;
+				activityHeuristic(clauseId);
 				return true; // conflict! all lits false
+			}
 			else if (not someLitTrue and numUndefs == 1)
 				setLiteralToTrue(lastLitUndef);
 		}
@@ -149,10 +190,19 @@ void backtrack()
 // Heuristic for finding the next decision literal:
 int getNextDecisionLiteral()
 {
-	for (uint i = 1; i <= numVars; ++i)
-		if (model[i] == UNDEF)
-			return i;
-	return 0;
+	int superTop = 0;
+    int topness = 0;
+
+    for(uint i = 1; i <= numVars; ++i){
+        if(model[i] == UNDEF){
+            if(literalsActivity[i] > topness){
+                topness = literalsActivity[i];
+                superTop = i;
+            }
+        }
+    }
+    ++decs;
+    return superTop;
 }
 
 void checkmodel()
