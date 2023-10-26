@@ -73,10 +73,28 @@ card_aux([X|L], Result) :-
     Result = [[X, CountX]|R2].
 
 % 10. esta_ordenada(L) - ordenada de menor a mayor
-esta_ordenada(L) :- (esta_ordenada_aux(L) -> write("yes") ; write("no")).
+esta_ordenada([_]).
+esta_ordenada([X,Y|Z]) :- X =< Y, esta_ordenada([Y|Z]). 
 
-esta_ordenada_aux([_]).
-esta_ordenada_aux([X,Y|Z]) :- X =< Y, esta_ordenada_aux([Y|Z]). 
+% 11. ord(L1,L2) - usa solo permutación y esta_ordenada
+ord(L1,L2) :- permutation(L1,L2), esta_ordenada(L2).
+
+% 12. diccionario(A,N)
+lstConcat([X],X).
+lstConcat([X,Y|Z],R) :- atom_concat(X, Y, RU), lstConcat([RU|Z],R).
+
+lstReverse(L, R) :- reverse_aux(L, [], R).
+reverse_aux([], Acc, Acc).
+reverse_aux([H|T], Acc, R) :-
+    reverse_aux(T, [H|Acc], R).
+
+diccionario(A, N) :- findall(R, diccionario_aux(A, N, [], R), _).
+diccionario_aux(_, 0, W, W) :-  lstReverse(W, K), lstConcat(K, Out), write(Out), write(' ').
+diccionario_aux(A, N, Acc, R) :- 
+    N > 0, member(M, A), N1 is N - 1, 
+    diccionario_aux(A, N1, [M | Acc], R).
+
+% 13. palindromos(L)
 
 main :-
     prod([1,2,3], P0), write(P0), nl,
@@ -90,8 +108,10 @@ main :-
     (suma_demas([1,2,3]) -> write("True") ; write("False")), nl,
     (suma_ants([1,2,3]) -> write("True") ; write("False")), nl,
     card([1,2,1,5,1,3,3,7]), nl,
-    esta_ordenada([3,45,67,83]), nl,
-    esta_ordenada([3,67,45]), nl.
+    (esta_ordenada([3,45,67,83]) -> write("yes") ; write("no")), nl,
+    (esta_ordenada([3,67,45]) -> write("yes") ; write("no")), nl,
+    ord([4,5,3,3,2],P13), write(P13), nl,
+    diccionario(['ga','chu','le'], 2), nl.
 
 
 
