@@ -12,14 +12,14 @@ using namespace std;
 
 uint numVars;
 uint numClauses;
-vector<vector<int>> clauses;
+vector<vector<int> > clauses;
 vector<int> model;
 vector<int> modelStack;
 uint indexOfNextLitToPropagate;
 uint decisionLevel;
 
-vector<vector<int>> positiveLiterals;
-vector<vector<int>> negativeLiterals;
+vector<vector<int> > positiveLiterals;
+vector<vector<int> > negativeLiterals;
 
 int conflicts;
 int decs;
