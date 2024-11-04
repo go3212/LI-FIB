@@ -1,0 +1,708 @@
+
+------------------
+./Random3SAT/vars-100-1.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                              209                1.30 per conflict
+c warming_decisions:                        0                0.00 per walk
+35 ms
+misat:
+SATISFIABLE
+28 ms
+Time ratio (KisSAT/misat): .80
+
+------------------
+./Random3SAT/vars-100-10.cnf
+KisSAT:
+UNSATISFIABLE
+c decisions:                             1037                1.23 per conflict
+c warming_decisions:                        0                0.00 per walk
+48 ms
+misat:
+UNSATISFIABLE
+24 ms
+Time ratio (KisSAT/misat): .50
+
+------------------
+./Random3SAT/vars-100-2.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                               47                1.68 per conflict
+c warming_decisions:                        0                0.00 per walk
+36 ms
+misat:
+SATISFIABLE
+24 ms
+Time ratio (KisSAT/misat): .66
+
+------------------
+./Random3SAT/vars-100-3.cnf
+KisSAT:
+UNSATISFIABLE
+c decisions:                             1500                1.13 per conflict
+c warming_decisions:                        0                0.00 per walk
+41 ms
+misat:
+UNSATISFIABLE
+24 ms
+Time ratio (KisSAT/misat): .58
+
+------------------
+./Random3SAT/vars-100-4.cnf
+KisSAT:
+UNSATISFIABLE
+c decisions:                             1185                1.24 per conflict
+c warming_decisions:                        0                0.00 per walk
+36 ms
+misat:
+UNSATISFIABLE
+26 ms
+Time ratio (KisSAT/misat): .72
+
+------------------
+./Random3SAT/vars-100-5.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                              372                1.13 per conflict
+c warming_decisions:                        0                0.00 per walk
+54 ms
+misat:
+SATISFIABLE
+23 ms
+Time ratio (KisSAT/misat): .42
+
+------------------
+./Random3SAT/vars-100-6.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                              590                1.37 per conflict
+c warming_decisions:                        0                0.00 per walk
+35 ms
+misat:
+SATISFIABLE
+24 ms
+Time ratio (KisSAT/misat): .68
+
+------------------
+./Random3SAT/vars-100-7.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                              201                1.18 per conflict
+c warming_decisions:                        0                0.00 per walk
+36 ms
+misat:
+SATISFIABLE
+23 ms
+Time ratio (KisSAT/misat): .63
+
+------------------
+./Random3SAT/vars-100-8.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                              205                1.21 per conflict
+c warming_decisions:                        0                0.00 per walk
+37 ms
+misat:
+SATISFIABLE
+24 ms
+Time ratio (KisSAT/misat): .64
+
+------------------
+./Random3SAT/vars-100-9.cnf
+KisSAT:
+UNSATISFIABLE
+c decisions:                             1070                1.13 per conflict
+c warming_decisions:                        0                0.00 per walk
+44 ms
+misat:
+UNSATISFIABLE
+26 ms
+Time ratio (KisSAT/misat): .59
+
+------------------
+./Random3SAT/vars-150-1.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                              732                1.21 per conflict
+c warming_decisions:                        0                0.00 per walk
+42 ms
+misat:
+SATISFIABLE
+37 ms
+Time ratio (KisSAT/misat): .88
+
+------------------
+./Random3SAT/vars-150-10.cnf
+KisSAT:
+UNSATISFIABLE
+c decisions:                            10246                1.20 per conflict
+c warming_decisions:                       23               23.00 per walk
+108 ms
+misat:
+UNSATISFIABLE
+62 ms
+Time ratio (KisSAT/misat): .57
+
+------------------
+./Random3SAT/vars-150-2.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                             1699                1.22 per conflict
+c warming_decisions:                        0                0.00 per walk
+46 ms
+misat:
+SATISFIABLE
+40 ms
+Time ratio (KisSAT/misat): .86
+
+------------------
+./Random3SAT/vars-150-3.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                             3738                1.37 per conflict
+c warming_decisions:                       20               20.00 per walk
+56 ms
+misat:
+SATISFIABLE
+35 ms
+Time ratio (KisSAT/misat): .62
+
+------------------
+./Random3SAT/vars-150-4.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                             2005                1.27 per conflict
+c warming_decisions:                        0                0.00 per walk
+47 ms
+misat:
+SATISFIABLE
+39 ms
+Time ratio (KisSAT/misat): .82
+
+------------------
+./Random3SAT/vars-150-5.cnf
+KisSAT:
+UNSATISFIABLE
+c decisions:                             5834                1.25 per conflict
+c warming_decisions:                       21               21.00 per walk
+81 ms
+misat:
+UNSATISFIABLE
+54 ms
+Time ratio (KisSAT/misat): .66
+
+------------------
+./Random3SAT/vars-150-6.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                             1074                1.25 per conflict
+c warming_decisions:                        0                0.00 per walk
+46 ms
+misat:
+SATISFIABLE
+28 ms
+Time ratio (KisSAT/misat): .60
+
+------------------
+./Random3SAT/vars-150-7.cnf
+KisSAT:
+UNSATISFIABLE
+c decisions:                             5132                1.23 per conflict
+c warming_decisions:                       20               20.00 per walk
+63 ms
+misat:
+UNSATISFIABLE
+57 ms
+Time ratio (KisSAT/misat): .90
+
+------------------
+./Random3SAT/vars-150-8.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                             3450                1.22 per conflict
+c warming_decisions:                       28               28.00 per walk
+53 ms
+misat:
+SATISFIABLE
+25 ms
+Time ratio (KisSAT/misat): .47
+
+------------------
+./Random3SAT/vars-150-9.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                             2261                1.25 per conflict
+c warming_decisions:                        0                0.00 per walk
+48 ms
+misat:
+SATISFIABLE
+65 ms
+Time ratio (KisSAT/misat): 1.35
+
+------------------
+./Random3SAT/vars-200-1.cnf
+KisSAT:
+UNSATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c decisions:                            26942                1.30 per conflict
+c warming_decisions:                       29               29.00 per walk
+244 ms
+misat:
+UNSATISFIABLE
+406 ms
+Time ratio (KisSAT/misat): 1.66
+
+------------------
+./Random3SAT/vars-200-10.cnf
+KisSAT:
+UNSATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c [reorder-2] reordered decisions in focused search mode
+c decisions:                            39405                1.43 per conflict
+c warming_decisions:                       46               23.00 per walk
+332 ms
+misat:
+UNSATISFIABLE
+523 ms
+Time ratio (KisSAT/misat): 1.57
+
+------------------
+./Random3SAT/vars-200-2.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                             3474                1.25 per conflict
+c warming_decisions:                       28               28.00 per walk
+61 ms
+misat:
+SATISFIABLE
+30 ms
+Time ratio (KisSAT/misat): .49
+
+------------------
+./Random3SAT/vars-200-3.cnf
+KisSAT:
+UNSATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c [reorder-2] reordered decisions in focused search mode
+c decisions:                            30550                1.33 per conflict
+c warming_decisions:                       25               25.00 per walk
+284 ms
+misat:
+UNSATISFIABLE
+324 ms
+Time ratio (KisSAT/misat): 1.14
+
+------------------
+./Random3SAT/vars-200-4.cnf
+KisSAT:
+UNSATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c decisions:                            14209                1.28 per conflict
+c warming_decisions:                       22               22.00 per walk
+137 ms
+misat:
+UNSATISFIABLE
+124 ms
+Time ratio (KisSAT/misat): .90
+
+------------------
+./Random3SAT/vars-200-5.cnf
+KisSAT:
+UNSATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c decisions:                            24019                1.44 per conflict
+c warming_decisions:                       24               24.00 per walk
+221 ms
+misat:
+UNSATISFIABLE
+234 ms
+Time ratio (KisSAT/misat): 1.05
+
+------------------
+./Random3SAT/vars-200-6.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                             3855                1.37 per conflict
+c warming_decisions:                       22               22.00 per walk
+62 ms
+misat:
+SATISFIABLE
+405 ms
+Time ratio (KisSAT/misat): 6.53
+
+------------------
+./Random3SAT/vars-200-7.cnf
+KisSAT:
+UNSATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c [reorder-2] reordered decisions in focused search mode
+c decisions:                            54909                1.49 per conflict
+c warming_decisions:                       45               22.50 per walk
+439 ms
+misat:
+UNSATISFIABLE
+792 ms
+Time ratio (KisSAT/misat): 1.80
+
+------------------
+./Random3SAT/vars-200-8.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                             3456                1.27 per conflict
+c warming_decisions:                       31               31.00 per walk
+61 ms
+misat:
+SATISFIABLE
+65 ms
+Time ratio (KisSAT/misat): 1.06
+
+------------------
+./Random3SAT/vars-200-9.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                              757                1.85 per conflict
+c warming_decisions:                        0                0.00 per walk
+46 ms
+misat:
+SATISFIABLE
+150 ms
+Time ratio (KisSAT/misat): 3.26
+
+------------------
+./Random3SAT/vars-250-1.cnf
+KisSAT:
+UNSATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c [reorder-2] reordered decisions in focused search mode
+c [reorder-3] reordered decisions in focused search mode
+c [reorder-4] reordered decisions in stable search mode
+c decisions:                           175642                1.62 per conflict
+c warming_decisions:                       96               32.00 per walk
+1667 ms
+misat:
+UNSATISFIABLE
+3497 ms
+Time ratio (KisSAT/misat): 2.09
+
+------------------
+./Random3SAT/vars-250-10.cnf
+KisSAT:
+SATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c [reorder-2] reordered decisions in focused search mode
+c decisions:                            43142                1.83 per conflict
+c warming_decisions:                       52               26.00 per walk
+322 ms
+misat:
+SATISFIABLE
+286 ms
+Time ratio (KisSAT/misat): .88
+
+------------------
+./Random3SAT/vars-250-2.cnf
+KisSAT:
+UNSATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c [reorder-2] reordered decisions in focused search mode
+c [reorder-3] reordered decisions in focused search mode
+c [reorder-4] reordered decisions in focused search mode
+c [reorder-5] reordered decisions in focused search mode
+c decisions:                           224728                1.59 per conflict
+c warming_decisions:                      106               26.50 per walk
+2193 ms
+misat:
+UNSATISFIABLE
+3443 ms
+Time ratio (KisSAT/misat): 1.56
+
+------------------
+./Random3SAT/vars-250-3.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                             3627                1.30 per conflict
+c warming_decisions:                       23               23.00 per walk
+64 ms
+misat:
+SATISFIABLE
+1129 ms
+Time ratio (KisSAT/misat): 17.64
+
+------------------
+./Random3SAT/vars-250-4.cnf
+KisSAT:
+SATISFIABLE
+c [reorder-1] reordered decisions in stable search mode
+c [reorder-2] reordered decisions in stable search mode
+c decisions:                            63827                1.54 per conflict
+c warming_decisions:                       49               24.50 per walk
+524 ms
+misat:
+SATISFIABLE
+2259 ms
+Time ratio (KisSAT/misat): 4.31
+
+------------------
+./Random3SAT/vars-250-5.cnf
+KisSAT:
+UNSATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c [reorder-2] reordered decisions in focused search mode
+c [reorder-3] reordered decisions in focused search mode
+c [reorder-4] reordered decisions in stable search mode
+c [reorder-5] reordered decisions in stable search mode
+c decisions:                           206901                1.55 per conflict
+c warming_decisions:                       88               22.00 per walk
+2045 ms
+misat:
+UNSATISFIABLE
+3347 ms
+Time ratio (KisSAT/misat): 1.63
+
+------------------
+./Random3SAT/vars-250-6.cnf
+KisSAT:
+UNSATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c [reorder-2] reordered decisions in focused search mode
+c [reorder-3] reordered decisions in stable search mode
+c [reorder-4] reordered decisions in stable search mode
+c [reorder-5] reordered decisions in focused search mode
+c [reorder-6] reordered decisions in focused search mode
+c decisions:                           261899                1.51 per conflict
+c warming_decisions:                       96               24.00 per walk
+2662 ms
+misat:
+UNSATISFIABLE
+7939 ms
+Time ratio (KisSAT/misat): 2.98
+
+------------------
+./Random3SAT/vars-250-7.cnf
+KisSAT:
+SATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c [reorder-2] reordered decisions in focused search mode
+c [reorder-3] reordered decisions in stable search mode
+c decisions:                           138328                1.74 per conflict
+c warming_decisions:                       96               32.00 per walk
+1280 ms
+misat:
+SATISFIABLE
+910 ms
+Time ratio (KisSAT/misat): .71
+
+------------------
+./Random3SAT/vars-250-8.cnf
+KisSAT:
+UNSATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c [reorder-2] reordered decisions in focused search mode
+c [reorder-3] reordered decisions in stable search mode
+c [reorder-4] reordered decisions in stable search mode
+c [reorder-5] reordered decisions in focused search mode
+c decisions:                           211659                1.53 per conflict
+c warming_decisions:                      103               25.75 per walk
+2114 ms
+misat:
+UNSATISFIABLE
+6114 ms
+Time ratio (KisSAT/misat): 2.89
+
+------------------
+./Random3SAT/vars-250-9.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                             4597                1.64 per conflict
+c warming_decisions:                       32               32.00 per walk
+67 ms
+misat:
+SATISFIABLE
+1028 ms
+Time ratio (KisSAT/misat): 15.34
+
+------------------
+./Random3SAT/vars-300-1.cnf
+KisSAT:
+SATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c [reorder-2] reordered decisions in focused search mode
+c [reorder-3] reordered decisions in stable search mode
+c decisions:                           111735                1.63 per conflict
+c warming_decisions:                       92               30.67 per walk
+1094 ms
+misat:
+SATISFIABLE
+3027 ms
+Time ratio (KisSAT/misat): 2.76
+
+------------------
+./Random3SAT/vars-300-10.cnf
+KisSAT:
+SATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c decisions:                            22881                1.59 per conflict
+c warming_decisions:                       36               36.00 per walk
+219 ms
+misat:
+SATISFIABLE
+11169 ms
+Time ratio (KisSAT/misat): 51.00
+
+------------------
+./Random3SAT/vars-300-2.cnf
+KisSAT:
+UNSATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c [reorder-2] reordered decisions in focused search mode
+c [reorder-3] reordered decisions in stable search mode
+c [reorder-4] reordered decisions in stable search mode
+c [reorder-5] reordered decisions in focused search mode
+c [reorder-6] reordered decisions in focused search mode
+c [reorder-7] reordered decisions in focused search mode
+c [reorder-8] reordered decisions in focused search mode
+c [reorder-9] reordered decisions in stable search mode
+c [reorder-10] reordered decisions in focused search mode
+c [reorder-11] reordered decisions in stable search mode
+c [reorder-12] reordered decisions in stable search mode
+c [reorder-13] reordered decisions in stable search mode
+c [reorder-14] reordered decisions in stable search mode
+c decisions:                          1529595                1.55 per conflict
+c warming_decisions:                      227               28.38 per walk
+20295 ms
+misat:
+UNSATISFIABLE
+52184 ms
+Time ratio (KisSAT/misat): 2.57
+
+------------------
+./Random3SAT/vars-300-3.cnf
+KisSAT:
+UNSATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c [reorder-2] reordered decisions in focused search mode
+c [reorder-3] reordered decisions in stable search mode
+c [reorder-4] reordered decisions in stable search mode
+c [reorder-5] reordered decisions in focused search mode
+c [reorder-6] reordered decisions in focused search mode
+c [reorder-7] reordered decisions in focused search mode
+c [reorder-8] reordered decisions in focused search mode
+c [reorder-9] reordered decisions in focused search mode
+c [reorder-10] reordered decisions in focused search mode
+c decisions:                           780677                1.52 per conflict
+c warming_decisions:                      183               30.50 per walk
+9661 ms
+misat:
+UNSATISFIABLE
+27614 ms
+Time ratio (KisSAT/misat): 2.85
+
+------------------
+./Random3SAT/vars-300-4.cnf
+KisSAT:
+UNSATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c [reorder-2] reordered decisions in focused search mode
+c [reorder-3] reordered decisions in focused search mode
+c [reorder-4] reordered decisions in focused search mode
+c [reorder-5] reordered decisions in focused search mode
+c [reorder-6] reordered decisions in focused search mode
+c [reorder-7] reordered decisions in focused search mode
+c [reorder-8] reordered decisions in focused search mode
+c [reorder-9] reordered decisions in focused search mode
+c [reorder-10] reordered decisions in focused search mode
+c [reorder-11] reordered decisions in focused search mode
+c [reorder-12] reordered decisions in focused search mode
+c decisions:                          1123138                1.54 per conflict
+c warming_decisions:                      196               28.00 per walk
+13797 ms
+misat:
+UNSATISFIABLE
+42493 ms
+Time ratio (KisSAT/misat): 3.07
+
+------------------
+./Random3SAT/vars-300-5.cnf
+KisSAT:
+SATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c [reorder-2] reordered decisions in focused search mode
+c decisions:                            49906                1.73 per conflict
+c warming_decisions:                       75               37.50 per walk
+414 ms
+misat:
+SATISFIABLE
+16988 ms
+Time ratio (KisSAT/misat): 41.03
+
+------------------
+./Random3SAT/vars-300-6.cnf
+KisSAT:
+UNSATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c [reorder-2] reordered decisions in focused search mode
+c [reorder-3] reordered decisions in stable search mode
+c [reorder-4] reordered decisions in focused search mode
+c [reorder-5] reordered decisions in focused search mode
+c [reorder-6] reordered decisions in focused search mode
+c [reorder-7] reordered decisions in focused search mode
+c [reorder-8] reordered decisions in focused search mode
+c [reorder-9] reordered decisions in focused search mode
+c [reorder-10] reordered decisions in focused search mode
+c decisions:                           804202                1.56 per conflict
+c warming_decisions:                      161               23.00 per walk
+9384 ms
+misat:
+UNSATISFIABLE
+16400 ms
+Time ratio (KisSAT/misat): 1.74
+
+------------------
+./Random3SAT/vars-300-7.cnf
+KisSAT:
+SATISFIABLE
+c decisions:                             4143                1.46 per conflict
+c warming_decisions:                       37               37.00 per walk
+68 ms
+misat:
+SATISFIABLE
+5887 ms
+Time ratio (KisSAT/misat): 86.57
+
+------------------
+./Random3SAT/vars-300-8.cnf
+KisSAT:
+UNSATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c [reorder-2] reordered decisions in focused search mode
+c [reorder-3] reordered decisions in focused search mode
+c [reorder-4] reordered decisions in focused search mode
+c [reorder-5] reordered decisions in focused search mode
+c [reorder-6] reordered decisions in focused search mode
+c [reorder-7] reordered decisions in focused search mode
+c [reorder-8] reordered decisions in focused search mode
+c [reorder-9] reordered decisions in focused search mode
+c [reorder-10] reordered decisions in focused search mode
+c [reorder-11] reordered decisions in focused search mode
+c [reorder-12] reordered decisions in stable search mode
+c [reorder-13] reordered decisions in focused search mode
+c decisions:                          1452371                1.55 per conflict
+c warming_decisions:                      211               26.38 per walk
+20232 ms
+misat:
+UNSATISFIABLE
+59732 ms
+Time ratio (KisSAT/misat): 2.95
+
+------------------
+./Random3SAT/vars-300-9.cnf
+KisSAT:
+SATISFIABLE
+c [reorder-1] reordered decisions in focused search mode
+c [reorder-2] reordered decisions in focused search mode
+c decisions:                            49080                1.99 per conflict
+c warming_decisions:                       74               37.00 per walk
+362 ms
+misat:
+SATISFIABLE
+8939 ms
+Time ratio (KisSAT/misat): 24.69

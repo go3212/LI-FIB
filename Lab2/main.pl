@@ -95,6 +95,189 @@ diccionario_aux(A, N, Acc, R) :-
     diccionario_aux(A, N1, [M | Acc], R).
 
 % 13. palindromos(L)
+intEven(I) :- intEvenAux(I, 0).
+intEvenAux(0, Odd) :- Odd == 0.
+intEvenAux(I, 1) :- I > 0, N is I - 1, intEvenAux(N, 0).
+intEvenAux(I, 0) :- I > 0, N is I - 1, intEvenAux(N, 1). 
+
+lstLength([], 0).
+lstLength([_|L], R) :- lstLength(L, K), R is K + 1.
+
+lstEven(L) :- lstLength(L, R), intEven(R).
+lstOdd(L) :- \+ lstEven(L).
+
+lstRemoveEquals([],[]).
+lstRemoveEquals([X|L],[X|Res]) :- \+ member(X, L), lstRemoveEquals(L, Res).
+lstRemoveEquals([X|L],Res) :- member(X, L), lstRemoveEquals(L, Res).
+
+is_palindromic(L) :- 
+    lstEven(L), append(A, B, L), lstReverse(B, BR), A == BR.
+is_palindromic(L) :- 
+    lstOdd(L), append(A, [_|B], L), lstReverse(B, BR), A == BR.
+
+palindromos(L) :- 
+    findall(K, permutation(L, K), L1), lstRemoveEquals(L1, L2), 
+    write_palindromes(L2).
+
+write_palindromes([]).
+write_palindromes([X|L]) :- is_palindromic(X), write(X), write_palindromes(L).
+write_palindromes([_|L]) :- write_palindromes(L).
+
+% 14. ['S', 'E', 'N', 'D'] +. ['M', 'O', 'R', 'E'] = ['M', 'O', 'N', 'E', Y].
+% Encontrar S E N D M O R Y (digitos).
+sendMoreMoney(_, _, _).
+
+% 15.
+
+% 16.
+reverse_dom(f(A,B), f(B,A)).
+
+p16([],[]).
+p16(L, [X|P]) :- select(X,L,R), p16(R,P).
+p16(L, [X|P]) :- reverse_dom(X,X1), select(X1,L,R). p16(R,P).
+
+dom(L) :- p16(L,P), dom_ok(P), write(P), nl.
+dom(_) :- write('no hay cedena'), nl.
+
+dom_connect(f(_,Y), f(Y,_)).
+
+dom_ok([X]).
+dom_ok([X,Y|P]) :- dom_connect(X,Y), dom_ok([Y|P]). 
+
+% 17. Npi de que es readclauses, no puedo depurar.
+% p17 :- readclauses(F), sat([],F).
+% p17 :- write('UNSAT'), nl.
+% sat(I,[]) :- write('IT IS SATISFIABL. Model: '), write(I), nl, !.
+% sat(I,F) :-
+%     decision_lit(F,Lit), % Select unit clause if any; otherwise, an arbitrary one. 
+%     simplif(Lit,F,F1), % Simplifies F. Warning: may fail and cause backtracking 
+%     sat(...,...).
+
+% 18.
+group(X, Y, Z, I) :- 
+    between(1,10,X), 
+    between(1,10,Y), 
+    between(1,10,Z), 
+    between(1,10,I), 
+    % Fijamos la proporción aquí.
+    % X - NoCancerDoesntSmoke
+    % Y - NoCancerSmokes
+    % Z - CancerDoesntSmoke
+    % I - CancerSmokes
+    Z/(X + Z) < I/(Y + I),
+    10 is X + Y + Z + I.
+
+p18 :- 
+    group(
+        NoCancerDoesntSmoke1, 
+        NoCancerSmokes1,
+        CancerDoesntSmoke1,
+        CancerSmokes1
+    ),
+    group(
+        NoCancerDoesntSmoke2, 
+        NoCancerSmokes2,
+        CancerDoesntSmoke2,
+        CancerSmokes2
+    ),
+    CancerNoSmokers = (CancerDoesntSmoke1+CancerDoesntSmoke2)/(CancerDoesntSmoke2+NoCancerDoesntSmoke2+CancerDoesntSmoke1+NoCancerDoesntSmoke1),
+    CancerSmokers = (CancerSmokes1+CancerSmokes2)/(CancerSmokes2+NoCancerSmokes2+CancerSmokes1+NoCancerSmokes1),
+    CancerNoSmokers > CancerSmokers, 
+    write([NoCancerDoesntSmoke1, NoCancerSmokes1, CancerDoesntSmoke1, CancerSmokes1]),
+    write([NoCancerDoesntSmoke2, NoCancerSmokes2, CancerDoesntSmoke2, CancerSmokes2]), nl.
+
+% 19. % L - Monedas, C - Cambio (cantidad), M - Monedas a devolver.
+lstGet([X|M], 0, X).
+lstGet([X|L], I, R) :- I > 0, I1 is I - 1, lstGet(L, I1, R).
+
+lstSum([X],X).
+lstSum([Y|R], S) :- lstSum(R, S1), S is S1 + Y.
+
+sum_coins([],[],0).
+sum_coins([X|L1],[Y|L2], C):- sum_coins(L1,L2,C1), C is C1 + X*Y.
+
+generate_with_coins(1,C,[C]) :- !.
+generate_with_coins(Llen,C,[X|Res]) :- 
+    between(0,C,X), 
+    NewLlen is Llen - 1,
+    NewC is C - X, NewC >= 0,
+    generate_with_coins(NewLlen, NewC, Res).
+
+maq(L,C,M) :- maqRec(L,C,M,1).
+
+maqRec(L,C,M,S) :- 
+    length(L,Llen),
+    generate_with_coins(Llen,S,M),
+    sum_coins(L,M,C), !.
+maqRec(L,C,M,S) :- NewS is S+1, maqRec(L,C,M,NewS).
+
+% 20. 
+flatten([], []) :- !.
+flatten([H|T], F) :-
+    is_list(H),
+    flatten(H, FH),
+    flatten(T, FT),
+    append(FH, FT, F).
+
+flatten([H|T], [H|FT]) :-
+    \+ is_list(H),
+    flatten(T, FT).
+
+% 21. log_b(N) = L; b^L = N
+log(B, N, L) :- 
+    between(0, N, L),
+    B**L =< N, 
+    B**(L+1) > N.
+
+% 22. 
+lstHas([X|_],X).
+lstHas([_|S],X) :- lstHas(S,X).
+
+lstRange(I, J, []) :- I > J, !.
+lstRange(I, J, [I|T]) :- 
+    I1 is I + 1,
+    lstRange(I1, J, T).
+
+lstCombination(0, _, []) :- !.
+lstCombination(K, [X|T], [X|Comb]) :- 
+    K > 0, 
+    K1 is K - 1, 
+    lstCombination(K1, T, Comb).
+lstCombination(K, [_|T], Comb) :- lstCombination(K, T, Comb).
+
+li_not_solution(S,R) :- 
+    lstHas(S,A), lstHas(S,B),
+    (lstHas(R,[B,A]) ; lstHas(R,[A,B])).
+li_is_solution(S,R) :- \+ li_not_solution(S,R).
+
+li_gen_students(N, M, Res) :- 
+    lstRange(1, N, Lst),
+    lstCombination(M, Lst, Res).
+
+li(N,M,L,S) :- 
+    li_gen_students(N,M,S),
+    li_is_solution(S,L).
+
+% 23.
+% subsetWithRest(L,Subset,Rest)
+lstRemove([],_,[]).
+lstRemove([X|T], X, T).
+lstRemove([Y|T], X, [Y|R]) :- X \= Y, lstRemove(T, X, R).
+
+subsetWithRest([], [], []).
+subsetWithRest([X|L], [X|Subset], Rest) :-
+    subsetWithRest(L, Subset, Rest).
+subsetWithRest([X|L], Subset, [X|Rest]) :-
+    subsetWithRest(L, Subset, Rest).
+
+% maxSubset(K,L,Sm)
+maxSubset(K,L,Sm) :-
+    subsetWithRest(L,Sm,Rest),
+    lstSum(Sm,SubsetSum), SubsetSum =< K,
+    (lstHas(Rest, X), SubsetSum + X> K).
+
+p23 :- 
+    (maxSubset(7,[1,2,3,2],R) -> write(R) ; write('No solution')), nl.
 
 main :-
     prod([1,2,3], P0), write(P0), nl,
@@ -111,7 +294,25 @@ main :-
     (esta_ordenada([3,45,67,83]) -> write("yes") ; write("no")), nl,
     (esta_ordenada([3,67,45]) -> write("yes") ; write("no")), nl,
     ord([4,5,3,3,2],P13), write(P13), nl,
-    diccionario(['ga','chu','le'], 2), nl.
+    diccionario(['ga','chu','le'], 2), nl,
+    palindromos(['a','a','c','c']), nl,
+    % 14
+    % 15
+    dom([f(2,3), f(3,4), f(4,2), f(2,2), f(2,1), f(1,6)]), nl,
+    % 17
+    p18, nl,
+    maq([1,2,5,13,17,35,157], 361,P14), write(P14), nl,
+    flatten([a,b,[c,[d],e,[]],f,[g,h]], P15), write(P15), nl,
+    log(2,1020,LogRes), write(LogRes), nl,
+    li(20,16,[[8,11],[8,15],[11,6],[4,9],[18,13],[7,9],[16,8],[18,10],[6,17],[8,20]],S), write(S), nl,
+    p23, nl.
+    
+
+
+
+
+
+
 
 
 

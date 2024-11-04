@@ -1,0 +1,262 @@
+Script started on Tue Oct 24 18:23:58 2023
+[1m[7m%[27m[1m[0m                                                                                               ]7;file://10-192-127-203client.eduroam.upc.edu/Users/fernandogomez/Dev/LI-FIB/Lab1/kissat-master[0m[27m[24m[J[32mgo3212@Macbook[30m[37m kissat-master $ [K[?2004hmakes   m  lls[?2004l
+CONTRIBUTING	README.md	makefile.in	test
+LICENSE		VERSION		scripts		typescript
+NEWS.md		configure	src
+[1m[7m%[27m[1m[0m                                                                                               ]7;file://10-192-127-203client.eduroam.upc.edu/Users/fernandogomez/Dev/LI-FIB/Lab1/kissat-master[0m[27m[24m[J[32mgo3212@Macbook[30m[37m kissat-master $ [K[?2004hccd scripts[1m/[0m[0m [?2004l
+[1m[7m%[27m[1m[0m                                                                                               ]7;file://10-192-127-203client.eduroam.upc.edu/Users/fernandogomez/Dev/LI-FIB/Lab1/kissat-master/scripts[0m[27m[24m[J[32mgo3212@Macbook[30m[37m scripts $ [K[?2004hlls[?2004l
+build-and-test-all-configurations.sh	generate-build-header.sh
+determine-coverage.sh			make-source-release.sh
+filter-coverage-output.sh		prepare-competition.sh
+[1m[7m%[27m[1m[0m                                                                                               ]7;file://10-192-127-203client.eduroam.upc.edu/Users/fernandogomez/Dev/LI-FIB/Lab1/kissat-master/scripts[0m[27m[24m[J[32mgo3212@Macbook[30m[37m scripts $ [K[?2004h../biu  ub./buba./bus./buh./bu ./bu[1C[1C[1C[1Cild-and-test-all-configurations.sh[1m [0m[0m [?2004l
+compilation with '-m32' disabled (install 'g++-multilib' first)
+
+testing single combinations
+using default compiler 'gcc' (no 'CC' environment variable)
+not forcing parallel build and testing (no '-j' option)
+
+---- [ single configurations ] ----------------------------------------------
+
+./configure -p                                    
+\033[1mbuild-and-test-all-configurations.sh: \033[1;31mfailed:\033[0m ./configure -p
+[1m[7m%[27m[1m[0m                                                                                               ]7;file://10-192-127-203client.eduroam.upc.edu/Users/fernandogomez/Dev/LI-FIB/Lab1/kissat-master/scripts[0m[27m[24m[J[32mgo3212@Macbook[30m[37m scripts $ [K[?2004hccd ..[?2004l
+[1m[7m%[27m[1m[0m                                                                                               ]7;file://10-192-127-203client.eduroam.upc.edu/Users/fernandogomez/Dev/LI-FIB/Lab1/kissat-master[0m[27m[24m[J[32mgo3212@Macbook[30m[37m kissat-master $ [K[?2004hlls[?2004l
+CONTRIBUTING	README.md	makefile.in	test
+LICENSE		VERSION		scripts		typescript
+NEWS.md		configure	src
+[1m[7m%[27m[1m[0m                                                                                               ]7;file://10-192-127-203client.eduroam.upc.edu/Users/fernandogomez/Dev/LI-FIB/Lab1/kissat-master[0m[27m[24m[J[32mgo3212@Macbook[30m[37m kissat-master $ [K[?2004hccd ..[?2004l
+[1m[7m%[27m[1m[0m                                                                                               ]7;file://10-192-127-203client.eduroam.upc.edu/Users/fernandogomez/Dev/LI-FIB/Lab1[0m[27m[24m[J[32mgo3212@Macbook[30m[37m Lab1 $ [K[?2004hlls[?2004l
+Makefile		backtrackingForSAT.pdf	run_misat.sh
+Random3SAT		kissat-master		scriptKisSAT.sh
+SAT-alumnes		misat
+SAT-alumnes.cpp		outKisSAT
+[1m[7m%[27m[1m[0m                                                                                               ]7;file://10-192-127-203client.eduroam.upc.edu/Users/fernandogomez/Dev/LI-FIB/Lab1[0m[27m[24m[J[32mgo3212@Macbook[30m[37m Lab1 $ [K[?2004hlscd ..ls   cd ..bash ./build-and-test-all-configurations.sh[43Dls                                         [41Dcd scripts[10Dls        [8Dmakeg++-13make  g++-13gcc[3Cbrew install gcc[16Dgcc             [13Dbrew install gcc[16Dgcc             [13Dbrew install gcc[16Dgcc             [13D-12g++[3C   gcc-11g++[3C   -11gcc[3Cg++   -12gcc[3C   brew install gcc[16Dgcc-13          [10Dg++[3Cmake  ls  cd scripts[10Dls        [8Dbash ./build-and-test-all-configurations.sh[43Dcd ..                                      [38Dls   cd ..ls     ../scriptKisSAT.sh[1m [0m[0m [?2004l
+
+------------------
+./Random3SAT/vars-100-1.cnf
+KisSAT:
+./scriptKisSAT.sh: line 25: ./kissat-master/build/kissat: No such file or directory
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+misat:
+SATISFIABLE
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+./scriptKisSAT.sh: line 39: [: : integer expression expected
+kisSAT took 0 ms, cannot calculate ratio.
+
+------------------
+./Random3SAT/vars-100-10.cnf
+KisSAT:
+./scriptKisSAT.sh: line 25: ./kissat-master/build/kissat: No such file or directory
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+misat:
+UNSATISFIABLE
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+./scriptKisSAT.sh: line 39: [: : integer expression expected
+kisSAT took 0 ms, cannot calculate ratio.
+
+------------------
+./Random3SAT/vars-100-2.cnf
+KisSAT:
+./scriptKisSAT.sh: line 25: ./kissat-master/build/kissat: No such file or directory
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+misat:
+SATISFIABLE
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+./scriptKisSAT.sh: line 39: [: : integer expression expected
+kisSAT took 0 ms, cannot calculate ratio.
+
+------------------
+./Random3SAT/vars-100-3.cnf
+KisSAT:
+./scriptKisSAT.sh: line 25: ./kissat-master/build/kissat: No such file or directory
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+misat:
+UNSATISFIABLE
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+./scriptKisSAT.sh: line 39: [: : integer expression expected
+kisSAT took 0 ms, cannot calculate ratio.
+
+------------------
+./Random3SAT/vars-100-4.cnf
+KisSAT:
+./scriptKisSAT.sh: line 25: ./kissat-master/build/kissat: No such file or directory
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+misat:
+UNSATISFIABLE
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+./scriptKisSAT.sh: line 39: [: : integer expression expected
+kisSAT took 0 ms, cannot calculate ratio.
+
+------------------
+./Random3SAT/vars-100-5.cnf
+KisSAT:
+./scriptKisSAT.sh: line 25: ./kissat-master/build/kissat: No such file or directory
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+misat:
+SATISFIABLE
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+./scriptKisSAT.sh: line 39: [: : integer expression expected
+kisSAT took 0 ms, cannot calculate ratio.
+
+------------------
+./Random3SAT/vars-100-6.cnf
+KisSAT:
+./scriptKisSAT.sh: line 25: ./kissat-master/build/kissat: No such file or directory
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+misat:
+SATISFIABLE
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+./scriptKisSAT.sh: line 39: [: : integer expression expected
+kisSAT took 0 ms, cannot calculate ratio.
+
+------------------
+./Random3SAT/vars-100-7.cnf
+KisSAT:
+./scriptKisSAT.sh: line 25: ./kissat-master/build/kissat: No such file or directory
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+misat:
+SATISFIABLE
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+./scriptKisSAT.sh: line 39: [: : integer expression expected
+kisSAT took 0 ms, cannot calculate ratio.
+
+------------------
+./Random3SAT/vars-100-8.cnf
+KisSAT:
+./scriptKisSAT.sh: line 25: ./kissat-master/build/kissat: No such file or directory
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+misat:
+SATISFIABLE
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+./scriptKisSAT.sh: line 39: [: : integer expression expected
+kisSAT took 0 ms, cannot calculate ratio.
+
+------------------
+./Random3SAT/vars-100-9.cnf
+KisSAT:
+./scriptKisSAT.sh: line 25: ./kissat-master/build/kissat: No such file or directory
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+misat:
+UNSATISFIABLE
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+./scriptKisSAT.sh: line 39: [: : integer expression expected
+kisSAT took 0 ms, cannot calculate ratio.
+
+------------------
+./Random3SAT/vars-150-1.cnf
+KisSAT:
+./scriptKisSAT.sh: line 25: ./kissat-master/build/kissat: No such file or directory
+./scriptKisSAT.sh: line 15: 16981646743N: value too great for base (error token is "16981646743N")
+ ms
+misat:
+SATISFIABLE
+./scriptKisSAT.sh: line 15: 16981646763N: value too great for base (error token is "16981646763N")
+ ms
+./scriptKisSAT.sh: line 39: [: : integer expression expected
+kisSAT took 0 ms, cannot calculate ratio.
+
+------------------
+./Random3SAT/vars-150-10.cnf
+KisSAT:
+./scriptKisSAT.sh: line 25: ./kissat-master/build/kissat: No such file or directory
+./scriptKisSAT.sh: line 15: 16981646763N: value too great for base (error token is "16981646763N")
+ ms
+misat:
+UNSATISFIABLE
+./scriptKisSAT.sh: line 15: 16981646823N: value too great for base (error token is "16981646823N")
+ ms
+./scriptKisSAT.sh: line 39: [: : integer expression expected
+kisSAT took 0 ms, cannot calculate ratio.
+
+------------------
+./Random3SAT/vars-150-2.cnf
+KisSAT:
+./scriptKisSAT.sh: line 25: ./kissat-master/build/kissat: No such file or directory
+./scriptKisSAT.sh: line 15: 16981646823N: value too great for base (error token is "16981646823N")
+ ms
+misat:
+SATISFIABLE
+./scriptKisSAT.sh: line 15: 16981646883N: value too great for base (error token is "16981646883N")
+ ms
+./scriptKisSAT.sh: line 39: [: : integer expression expected
+kisSAT took 0 ms, cannot calculate ratio.
+
+------------------
+./Random3SAT/vars-150-3.cnf
+KisSAT:
+./scriptKisSAT.sh: line 25: ./kissat-master/build/kissat: No such file or directory
+./scriptKisSAT.sh: line 15: 16981646883N: value too great for base (error token is "16981646883N")
+ ms
+misat:
+SATISFIABLE
+./scriptKisSAT.sh: line 15: 16981646923N: value too great for base (error token is "16981646923N")
+ ms
+./scriptKisSAT.sh: line 39: [: : integer expression expected
+kisSAT took 0 ms, cannot calculate ratio.
+
+------------------
+./Random3SAT/vars-150-4.cnf
+KisSAT:
+./scriptKisSAT.sh: line 25: ./kissat-master/build/kissat: No such file or directory
+./scriptKisSAT.sh: line 15: 16981646923N: value too great for base (error token is "16981646923N")
+ ms
+misat:
+SATISFIABLE
+./scriptKisSAT.sh: line 15: 16981646953N: value too great for base (error token is "16981646953N")
+ ms
+./scriptKisSAT.sh: line 39: [: : integer expression expected
+kisSAT took 0 ms, cannot calculate ratio.
+
+------------------
+./Random3SAT/vars-150-5.cnf
+KisSAT:
+./scriptKisSAT.sh: line 25: ./kissat-master/build/kissat: No such file or directory
+./scriptKisSAT.sh: line 15: 16981646953N: value too great for base (error token is "16981646953N")
+ ms
+misat:
+UNSATISFIABLE
+./scriptKisSAT.sh: line 15: 16981646973N: value too great for base (error token is "16981646973N")
+ ms
+./scriptKisSAT.sh: line 39: [: : integer expression expected
+kisSAT took 0 ms, cannot calculate ratio.
+
+------------------
+./Random3SAT/vars-150-6.cnf
+KisSAT:
+./scriptKisSAT.sh: line 25: ./kissat-master/build/kissat: No such file or directory
+./scriptKisSAT.sh: line 15: 16981646973N: value too great for base (error token is "16981646973N")
+ ms
+misat:
+SATISFIABLE
+./scriptKisSAT.sh: line 15: 16981646973N: value too great for base (error token is "16981646973N")
+ ms
+./scriptKisSAT.sh: line 39: [: : integer expression expected
+kisSAT took 0 ms, cannot calculate ratio.
+
+------------------
+./Random3SAT/vars-150-7.cnf
+KisSAT:
+./scriptKisSAT.sh: line 25: ./kissat-master/build/kissat: No such file or directory
+./scriptKisSAT.sh: line 15: 16981646973N: value too great for base (error token is "16981646973N")
+ ms
+misat:
