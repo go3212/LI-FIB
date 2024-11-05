@@ -1,3 +1,26 @@
+% swipl -s main.pl -g main -t halt
+
+% select(X, [X|Tail], Tail).
+% select(X, [Head|Tail], [Head|Rest]) :-
+%     select(X, Tail, Rest).
+
+% select(X, [Y|Tail], Result) :-
+%     ( X = Y ->
+%         Result = Tail
+%     ;
+%         Result = [Y|Rest],
+%         select(X, Tail, Rest)
+%     ).
+
+% select_all(_, [], []).
+% select_all(X, [X|Tail], Result) :-
+%     select_all(X, Tail, Result).
+% select_all(X, [Y|Tail], [Y|Result]) :-
+%     X \= Y,
+%     select_all(X, Tail, Result).
+
+
+
 % 1. prod(L,P)
 prod([], 1).
 prod([L1|L], P) :- prod(L, P1), P is L1*P1.
@@ -16,9 +39,12 @@ union([X|L1], L2, [X|R]):- union(L1, L2, R).
 remove(X, L, R) :- append(L1,[X|L2],L), append(L1,L2,R).
 
 intersection([], _, []).
-intersection([X|L1], L2, [X|R]) :- 
-    member(X, L2), remove(X, L2, NL), intersection(L1, NL, R).
-intersection([_|L1], L2, R) :- intersection(L1, L2, R).
+intersection([X|Xs], Ys, [X|Zs]) :-
+    member(X, Ys),
+    intersection(Xs, Ys, Zs).
+intersection([X|Xs], Ys, Zs) :-
+    \+ member(X, Ys),
+    intersection(Xs, Ys, Zs).
 
 % 4. Último elemento y inversa de lista (usar append)
 % last(L,R)
@@ -134,14 +160,14 @@ reverse_dom(f(A,B), f(B,A)).
 
 p16([],[]).
 p16(L, [X|P]) :- select(X,L,R), p16(R,P).
-p16(L, [X|P]) :- reverse_dom(X,X1), select(X1,L,R). p16(R,P).
+p16(L, [X|P]) :- reverse_dom(X,X1), select(X1,L,R), p16(R,P).
 
 dom(L) :- p16(L,P), dom_ok(P), write(P), nl.
 dom(_) :- write('no hay cedena'), nl.
 
 dom_connect(f(_,Y), f(Y,_)).
 
-dom_ok([X]).
+dom_ok([_]).
 dom_ok([X,Y|P]) :- dom_connect(X,Y), dom_ok([Y|P]). 
 
 % 17. Npi de que es readclauses, no puedo depurar.
@@ -279,6 +305,107 @@ maxSubset(K,L,Sm) :-
 p23 :- 
     (maxSubset(7,[1,2,3,2],R) -> write(R) ; write('No solution')), nl.
 
+% p24
+numVertices(10).
+minCliqueSize(4).
+vertices(Vs) :- numVertices(N), findall(I,between(1,N,I),Vs).
+vertex(V) :- vertices(Vs), member(V,Vs).
+edge(U,V) :- edge1(U,V).
+edge(U,V) :- edge1(V,U).
+
+edge1(9,8).
+edge1(8,2).
+edge1(7,4).
+edge1(5,7).
+edge1(4,2).
+edge1(5,2).
+edge1(2,7).
+edge1(7,9).
+edge1(2,9).
+edge1(4,8).
+edge1(4,9).
+edge1(9,5).
+edge1(4,5).
+
+% Tenemos un clique si la lista se vacia
+isCliqueDeep([], _).
+isCliqueDeep(L, S) :- 
+    select(X, L, RestL), !,
+    all_connected(X, S),
+    all_connected(X, RestL),
+    isCliqueDeep(RestL, [X | S]).
+
+all_connected(_, []).
+all_connected(X, [Y | Ys]) :-
+    edge(X, Y),
+    all_connected(X, Ys).
+
+isClique(Nodes) :- 
+    isCliqueDeep(Nodes, []).
+
+subset([], []).
+subset([E|Tail], [E|NTail]) :- subset(Tail, NTail).
+subset(Tail, [_|NTail]) :- subset(Tail, NTail).
+
+
+p24 :- 
+    vertices(Vs), 
+    findall(S, 
+    (
+        subset(S, Vs), isClique(S), lstLength(S, SLen), minCliqueSize(MCSize), SLen >= MCSize, write(S), nl
+    ), _).
+
+nthRoot(N, K, R) :-
+    between(1, K, R),
+    R_NthPower is R ^ N,
+    R_NthPower =< K,
+    R1 is R + 1,
+    R1_NthPower is R1 ^ N,
+    R1_NthPower > K,
+    !.
+
+p25 :- nthRoot(2,16,R), write(R), nl.
+
+lstEmpty([]).
+
+lstEq([],[]).
+lstEq([X|L1], [Y|L2]) :- X =:= Y, lstEq(L1,L2).
+
+lstUnorderedEq(L1, L2) :-
+    msort(L1, SortedL1),
+    msort(L2, SortedL2),
+    lstEq(SortedL1, SortedL2).
+
+no_overlap(_, []).
+no_overlap(X, [Y|Ys]) :-
+    \+ lstUnorderedEq(X, Y),
+    no_overlap(X, Ys).
+
+ordered_subset_deep([], _, []).
+
+ordered_subset_deep([X|SS], Acc, [X|Rest]) :-
+    no_overlap(X, Acc),
+    ordered_subset_deep(SS, [X|Acc], Rest).
+
+ordered_subset_deep([X|SS], Acc, Rest) :-
+    \+ no_overlap(X, Acc),
+    ordered_subset_deep(SS, Acc, Rest).
+
+ordered_subset(S, L) :-
+    findall(X, subset(X, L), Subsets),
+    ordered_subset_deep(Subsets, [], OSS),
+    member(S, OSS).
+
+allSSSS(L):- 
+    ordered_subset(SS,L),
+    sum(SS, Sum),
+    nthRoot(2, Sum, Root),
+    Sum is Root ^ 2 ,
+    write(Sum-SS), nl, fail.
+
+p26 :- allSSSS([6,3,4,5,6,9,8,5,2,3,4]).
+    
+
 main :-
     prod([1,2,3], P0), write(P0), nl,
     pescalar([1,2], [1,2], P1), write(P1), nl,
@@ -298,14 +425,19 @@ main :-
     palindromos(['a','a','c','c']), nl,
     % 14
     % 15
-    dom([f(2,3), f(3,4), f(4,2), f(2,2), f(2,1), f(1,6)]), nl,
+    write("17."), dom([f(3,2), f(3,4), f(4,2), f(2,2), f(2,1), f(1,6)]), nl,
     % 17
     p18, nl,
     maq([1,2,5,13,17,35,157], 361,P14), write(P14), nl,
     flatten([a,b,[c,[d],e,[]],f,[g,h]], P15), write(P15), nl,
     log(2,1020,LogRes), write(LogRes), nl,
     li(20,16,[[8,11],[8,15],[11,6],[4,9],[18,13],[7,9],[16,8],[18,10],[6,17],[8,20]],S), write(S), nl,
-    p23, nl.
+    p23, nl, !,
+    write("24."), nl, p24, nl, !,
+    write("25."), nl, p25, nl, !,
+    write("26."), nl, p26, nl, !,
+    halt.
+
     
 
 

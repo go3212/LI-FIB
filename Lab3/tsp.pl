@@ -57,52 +57,35 @@ symbolicOutput(0).
 %%%%%%  1. SAT Variables:
 satVariable( visited(I,P) ):-  city(I), position(P). % visited(I,P) meaning "city I is visited in position P"
 % Warning: more types of variables might be needed or convenient.
-satVariable( traject(C1, C2) ):- city(C1), city(C2).%, adjacency(C1, L), member(C2, L).
+
 
 %%%%%%  2. Clause generation for the SAT solver:
 
-writeClauses:- eachCityVisitedOnce,
-               eachPositionOnlyOneCity,
-               eliminateTrajects,
-               traject_visited,
-               routeMaxCost,
-               writeOneClause([visited(1, 0)]),
-               numCities(N), writeOneClause([visited(1, N)]),
-               true, !.
-
+writeClauses:- 
+    onlyCity,
+    onlyPosition,
+    numberOne,
+    adjecent,
+    paridad,
+    true.
 writeClauses:- told, nl, write('writeClauses failed!'), nl,nl, halt.
 
-% (DONE)
-eachCityVisitedOnce:- city(C), C > 1,
-                      findall(visited(C, P), position(P), Lits),
-                      exactly(1, Lits), fail.
-eachCityVisitedOnce.
+onlyCity :- city(I), I \= 1, findall(visited(I, P) ,position(P), List), exactly(1, List), fail.
+onlyCity.
 
-% (DONE)
-eachPositionOnlyOneCity:- position(P),
-                          findall(visited(C, P), city(C), Lits),
-                          exactly(1, Lits), fail.
-eachPositionOnlyOneCity.
+onlyPosition :- position(P), findall(visited(I, P), city(I), List), exactly(1, List), fail.
+onlyPosition.
 
-eliminateTrajects:-  adjacency(C1, L), position(P1), P2 is P1+1, position(P2),
-                     city(C2), C2 \= C1, not(member(C2, L)),
-                     writeOneClause([-visited(C1, P1), -visited(C2, P2)]),
-                     fail.
-eliminateTrajects.
+numberOne :- numCities(N), writeClause([visited(1, 0)]), writeClause([visited(1, N)]), fail.
+numberOne.
 
-traject_visited:- adjacency(C1, L), position(P1), P2 is P1+1,
-                  position(P2), member(C2, L),
-                  writeOneClause([traject(C1, C2), -visited(C1, P1), -visited(C2, P2)]),
-                  fail.
-traject_visited.
+adjecent :- numCities(N), city(I), city(I1), position(P), P1 is P + 1, P \= -1, P \= N, adjacency(I, L), not(member(I1, L)), writeClause([-visited(I, P), -visited(I1, P1)]), fail.
+adjecent.
 
+changeParidad(P):- city(I1), city(I2), visited(I1, P),P1 is P+1, visited(I2, P1), L1 is I1 mod 2, L2 is I2 mod 2, L1 = L2.
 
-routeMaxCost:- findall(traject(C1, C2), (city(C1), city(C2), C1 mod 2 == C2 mod 2), Lits),
-               maxCost(C), atMost(C, Lits), fail.
-routeMaxCost.
-
-div2(N):- N2 is N/2, N is N2*2.
-
+paridad :- maxCost(M), numCities(N), city(I), findall(visited(I, P), position(P), List), atMost(M, [changeParidad(0),...,changeParidad(N)]), fail.
+paridad.
 
 %%%%%%  3. DisplaySol: show the solution. Here M contains the literals that are true in the model:
 
@@ -121,8 +104,8 @@ displaySol(_):- nl.
 
 % Express that Var is equivalent to the disjunction of Lits:
 expressOr( Var, Lits ):- symbolicOutput(1), write( Var ), write(' <--> or('), write(Lits), write(')'), nl, !.
-expressOr( Var, Lits ):- member(Lit,Lits), negate(Lit,NLit), writeOneClause([ NLit, Var ]), fail.
-expressOr( Var, Lits ):- negate(Var,NVar), writeOneClause([ NVar | Lits ]),!.
+expressOr( Var, Lits ):- member(Lit,Lits), negate(Lit,NLit), writeClause([ NLit, Var ]), fail.
+expressOr( Var, Lits ):- negate(Var,NVar), writeClause([ NVar | Lits ]),!.
 
 %% expressOr(a,[x,y]) genera 3 clausulas (como en la Transformación de Tseitin):
 %% a == x v y
@@ -132,8 +115,8 @@ expressOr( Var, Lits ):- negate(Var,NVar), writeOneClause([ NVar | Lits ]),!.
 
 % Express that Var is equivalent to the conjunction of Lits:
 expressAnd( Var, Lits) :- symbolicOutput(1), write( Var ), write(' <--> and('), write(Lits), write(')'), nl, !.
-expressAnd( Var, Lits):- member(Lit,Lits), negate(Var,NVar), writeOneClause([ NVar, Lit ]), fail.
-expressAnd( Var, Lits):- findall(NLit, (member(Lit,Lits), negate(Lit,NLit)), NLits), writeOneClause([ Var | NLits]), !.
+expressAnd( Var, Lits):- member(Lit,Lits), negate(Var,NVar), writeClause([ NVar, Lit ]), fail.
+expressAnd( Var, Lits):- findall(NLit, (member(Lit,Lits), negate(Lit,NLit)), NLits), writeClause([ Var | NLits]), !.
 
 
 %%%%%% Cardinality constraints on arbitrary sets of literals Lits:
@@ -144,13 +127,13 @@ exactly(K,Lits):- atLeast(K,Lits), atMost(K,Lits),!.
 atMost(K,Lits):- symbolicOutput(1), write( atMost(K,Lits) ), nl, !.
 atMost(K,Lits):-   % l1+...+ln <= k:  in all subsets of size k+1, at least one is false:
       negateAll(Lits,NLits),
-      K1 is K+1,    subsetOfSize(K1,NLits,Clause), writeOneClause(Clause),fail.
+      K1 is K+1,    subsetOfSize(K1,NLits,Clause), writeClause(Clause),fail.
 atMost(_,_).
 
 atLeast(K,Lits):- symbolicOutput(1), write( atLeast(K,Lits) ), nl, !.
 atLeast(K,Lits):-  % l1+...+ln >= k: in all subsets of size n-k+1, at least one is true:
       length(Lits,N),
-      K1 is N-K+1,  subsetOfSize(K1, Lits,Clause), writeOneClause(Clause),fail.
+      K1 is N-K+1,  subsetOfSize(K1, Lits,Clause), writeClause(Clause),fail.
 atLeast(_,_).
 
 negateAll( [], [] ).
@@ -174,7 +157,7 @@ main:-  initClauseGeneration,
         write('Generated '), write(C), write(' clauses over '), write(N), write(' variables. '),nl,
         shell('cat header clauses > infile.cnf',_),
         write('Calling solver....'), nl,
-        shell('/home/jk/Descargas/kissat-rel-3.0.0/build/kissat -v infile.cnf > model', Result),  % if sat: Result=10; if unsat: Result=20.
+        shell('picosat -v -o model infile.cnf', Result),  % if sat: Result=10; if unsat: Result=20.
         treatResult(Result),!.
 
 treatResult(20):- write('Unsatisfiable'), nl, halt.
@@ -189,9 +172,9 @@ initClauseGeneration:-  %initialize all info about variables and clauses:
         assert(numClauses( 0 )),
         assert(numVars(    0 )),     !.
 
-writeOneClause([]):- symbolicOutput(1),!, nl.
-writeOneClause([]):- countClause, write(0), nl.
-writeOneClause([Lit|C]):- w(Lit), writeOneClause(C),!.
+writeClause([]):- symbolicOutput(1),!, nl.
+writeClause([]):- countClause, write(0), nl.
+writeClause([Lit|C]):- w(Lit), writeClause(C),!.
 w(-Var):- symbolicOutput(1), satVariable(Var), write(-Var), write(' '),!.
 w( Var):- symbolicOutput(1), satVariable(Var), write( Var), write(' '),!.
 w(-Var):- satVariable(Var),  var2num(Var,N),   write(-), write(N), write(' '),!.

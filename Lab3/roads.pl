@@ -109,30 +109,24 @@ satVariable( install(C) ):- city(C). %   install(C) means  "a gas station is ins
 
 %%%%%%  2. Clause generation for the SAT solver:
 
-writeClauses:-
-    installedAll,
-    maxNStations,
-    true, !.
-writeClauses:- told, nl, write('writeClauses failed!'), nl,nl, halt.
+writeClauses:- 
+	conjuntCiutat,
+	minimUnGasolinera,
+	true.
+writeClauses :- told, nl, write('writeClauses failed!'), nl,nl, halt.
 
 
-installedAll:- road(C1, C2),
-               writeOneClause([install(C1), install(C2)]),
-               fail.
-installedAll.
+conjuntCiutat :- findall(install(C), city(C), List), maxStations(K), atMost(K, List), fail.
+conjuntCiutat.
 
-maxNStations:- findall(install(C), city(C), Lits),
-               maxStations(N), atMost(N, Lits), fail.
-maxNStations.
-
+minimUnGasolinera :- city(A), city(B), road(A,B), writeClause([install(A), install(B)]), fail.
+minimUnGasolinera.
 
 %%%%%%  3. DisplaySol: show the solution. Here M contains the literals that are true in the model:
 
 %displaySol(M):- nl, write(M), nl, nl, fail.
-displaySol(M):- nl, write('Gas Station installed in cities: '), member(install(C), M), write(C), write(' '), fail.
-displaySol(_):- nl, road(C1, C2), write('Road '), write(C1-C2), write(' : '),
-                ((satVariable(install(C1)) ; satVariable(install(C2))) -> write('true') ; write('false')), nl, fail.
-displaySol(_).
+displaySol(M):- write("Ciutats amb gasolinera: "), nl, city(C), member(install(C), M), write(C), nl, fail.
+displaySol(_):- nl.
 
 %%%%%%% =======================================================================================
 
@@ -145,8 +139,8 @@ displaySol(_).
 
 % Express that Var is equivalent to the disjunction of Lits:
 expressOr( Var, Lits ):- symbolicOutput(1), write( Var ), write(' <--> or('), write(Lits), write(')'), nl, !.
-expressOr( Var, Lits ):- member(Lit,Lits), negate(Lit,NLit), writeOneClause([ NLit, Var ]), fail.
-expressOr( Var, Lits ):- negate(Var,NVar), writeOneClause([ NVar | Lits ]),!.
+expressOr( Var, Lits ):- member(Lit,Lits), negate(Lit,NLit), writeClause([ NLit, Var ]), fail.
+expressOr( Var, Lits ):- negate(Var,NVar), writeClause([ NVar | Lits ]),!.
 
 %% expressOr(a,[x,y]) genera 3 clausulas (como en la Transformación de Tseitin):
 %% a == x v y
@@ -156,8 +150,8 @@ expressOr( Var, Lits ):- negate(Var,NVar), writeOneClause([ NVar | Lits ]),!.
 
 % Express that Var is equivalent to the conjunction of Lits:
 expressAnd( Var, Lits) :- symbolicOutput(1), write( Var ), write(' <--> and('), write(Lits), write(')'), nl, !.
-expressAnd( Var, Lits):- member(Lit,Lits), negate(Var,NVar), writeOneClause([ NVar, Lit ]), fail.
-expressAnd( Var, Lits):- findall(NLit, (member(Lit,Lits), negate(Lit,NLit)), NLits), writeOneClause([ Var | NLits]), !.
+expressAnd( Var, Lits):- member(Lit,Lits), negate(Var,NVar), writeClause([ NVar, Lit ]), fail.
+expressAnd( Var, Lits):- findall(NLit, (member(Lit,Lits), negate(Lit,NLit)), NLits), writeClause([ Var | NLits]), !.
 
 
 %%%%%% Cardinality constraints on arbitrary sets of literals Lits:
@@ -168,13 +162,13 @@ exactly(K,Lits):- atLeast(K,Lits), atMost(K,Lits),!.
 atMost(K,Lits):- symbolicOutput(1), write( atMost(K,Lits) ), nl, !.
 atMost(K,Lits):-   % l1+...+ln <= k:  in all subsets of size k+1, at least one is false:
       negateAll(Lits,NLits),
-      K1 is K+1,    subsetOfSize(K1,NLits,Clause), writeOneClause(Clause),fail.
+      K1 is K+1,    subsetOfSize(K1,NLits,Clause), writeClause(Clause),fail.
 atMost(_,_).
 
 atLeast(K,Lits):- symbolicOutput(1), write( atLeast(K,Lits) ), nl, !.
 atLeast(K,Lits):-  % l1+...+ln >= k: in all subsets of size n-k+1, at least one is true:
       length(Lits,N),
-      K1 is N-K+1,  subsetOfSize(K1, Lits,Clause), writeOneClause(Clause),fail.
+      K1 is N-K+1,  subsetOfSize(K1, Lits,Clause), writeClause(Clause),fail.
 atLeast(_,_).
 
 negateAll( [], [] ).
@@ -198,7 +192,7 @@ main:-  initClauseGeneration,
         write('Generated '), write(C), write(' clauses over '), write(N), write(' variables. '),nl,
         shell('cat header clauses > infile.cnf',_),
         write('Calling solver....'), nl,
-        shell('/home/jk/Descargas/kissat-rel-3.0.0/build/kissat -v infile.cnf > model', Result),  % if sat: Result=10; if unsat: Result=20.
+        shell('picosat -v -o model infile.cnf', Result),  % if sat: Result=10; if unsat: Result=20.
         treatResult(Result),!.
 
 treatResult(20):- write('Unsatisfiable'), nl, halt.
@@ -213,9 +207,9 @@ initClauseGeneration:-  %initialize all info about variables and clauses:
         assert(numClauses( 0 )),
         assert(numVars(    0 )),     !.
 
-writeOneClause([]):- symbolicOutput(1),!, nl.
-writeOneClause([]):- countClause, write(0), nl.
-writeOneClause([Lit|C]):- w(Lit), writeOneClause(C),!.
+writeClause([]):- symbolicOutput(1),!, nl.
+writeClause([]):- countClause, write(0), nl.
+writeClause([Lit|C]):- w(Lit), writeClause(C),!.
 w(-Var):- symbolicOutput(1), satVariable(Var), write(-Var), write(' '),!.
 w( Var):- symbolicOutput(1), satVariable(Var), write( Var), write(' '),!.
 w(-Var):- satVariable(Var),  var2num(Var,N),   write(-), write(N), write(' '),!.
